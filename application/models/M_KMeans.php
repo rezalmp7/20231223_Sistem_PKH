@@ -1,5 +1,13 @@
 <?php
 class M_KMeans extends CI_Model {
+	private $data = [];
+	private $provinsi = [];
+	private $cluster;
+	private	$cluster_lama;
+	private $variable_x;
+	private $variable_y;
+	private $centroid;
+	private $dataForProcessing;
 
 	function __construct() {
 		parent::__construct();
@@ -48,7 +56,7 @@ class M_KMeans extends CI_Model {
 		return sqrt(pow(($data[0]-$centroid[0]),2) + pow(($data[1]-$centroid[1]),2));
 	}
 
-	function jarakTerdekat($jarak_ke_centroid=array(),$centroid){
+	function jarakTerdekat($jarak_ke_centroid,$centroid){
 		foreach ($jarak_ke_centroid as $key => $value) {
 			if(!isset($minimum)){
 				$minimum=$value;

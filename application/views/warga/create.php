@@ -63,16 +63,133 @@
 											<input type="number" name="rw" id="input_rw" class="form-control" placeholder="Rukun Warga">
 										</div>
 
-										<div class="mb3">
-											<div class="form-check form-check-inline">
-												<input type="checkbox" name="pns" class="form-check-input" id="checkIsPns">
-												<label class="form-check-label" for="checkIsPns">PNS</label>
+										<div class="mb-3">
+											<label for="input_gaji" class="form-label">Gaji</label>
+											<input type="number" name="gaji" id="input_gaji" class="form-control" placeholder="Gaji Yang didapat">
+										</div>
+
+										<div class="mb-3">
+											<div>
+												Apakah saudara/i mempunyai balita ?
+											</div>
+											<div class="row px-3">
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="hasBalita" value="1" id="hasBalitaYa" checked required>
+													<label class="form-check-label" for="hasBalitaYa">
+														Ya
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="hasBalita" value="0" id="hasBalitaTidak" required>
+													<label class="form-check-label" for="hasBalitaTidak">
+														Tidak
+													</label>
+												</div>
 											</div>
 										</div>
 
 										<div class="mb-3">
-											<label for="input_gaji" class="form-label">Gaji</label>
-											<input type="number" name="gaji" id="input_gaji" class="form-control" placeholder="Gaji Yang didapat">
+											<div>
+												Apakah anda PNS ?
+											</div>
+											<div class="row px-3">
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="isPNS" value="1" id="isPNSYa" checked required>
+													<label class="form-check-label" for="isPNSYa">
+														Ya
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="isPNS" value="0" id="isPNSTidak" required>
+													<label class="form-check-label" for="isPNSTidak">
+														Tidak
+													</label>
+												</div>
+											</div>
+										</div>
+										
+										<div class="mb-3">
+											<div>
+												Berapa Usia Anda saat ini ? ?
+											</div>
+											<div class="row px-3">
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="umur" value="1" id="umur25" checked required>
+													<label class="form-check-label" for="umur25">
+														25-35 th
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="umur" value="2" id="umur36" required>
+													<label class="form-check-label" for="umur36">
+														36-59 th
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="umur" value="3" id="umur60" required>
+													<label class="form-check-label" for="umur60">
+														60 keatas
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="mb-3">
+											<div>
+												Apakah saudara/I memiliki anak yang masih sekolah ?
+											</div>
+											<div class="row px-3">
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="sekolah" value="belumSekolah" id="sekolahBelumSekolah" checked required>
+													<label class="form-check-label" for="sekolahBelumSekolah">
+														Belum Sekolah
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="sekolah" value="sd" id="sekolahSd" required>
+													<label class="form-check-label" for="sekolahSd">
+														SD
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="sekolah" value="smp" id="sekolahSmp" required>
+													<label class="form-check-label" for="sekolahSmp">
+														SMP
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="sekolah" value="sma" id="sekolahSma" required>
+													<label class="form-check-label" for="sekolahSma">
+														SMA
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="mb-3">
+											<div>
+												Apa pekerjaan saudara/i sekarang ?
+											</div>
+											<div class="row px-3">
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="pekerjaan" value="petani" id="pekerjaanPetani" checked required>
+													<label class="form-check-label" for="pekerjaanPetani">
+														Petani
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="pekerjaan" value="wiraswasta" id="pekerjaanWiraswasta" required>
+													<label class="form-check-label" for="pekerjaanWiraswasta">
+														Wiraswasta
+													</label>
+												</div>
+												<div class="form-check col d-block">
+													<input class="form-check-input" type="radio" name="pekerjaan" value="buruh pabrik" id="pekerjaanBuruhPabrik" required>
+													<label class="form-check-label" for="pekerjaanBuruhPabrik">
+														Buruh Pabrik
+													</label>
+												</div>
+											</div>
 										</div>
 
 										<div class="mb-3">

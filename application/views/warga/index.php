@@ -37,8 +37,11 @@
                                             <tr>
                                                 <th>Nama</th>
                                                 <th>Alamat</th>
-                                                <th>PNS</th>
                                                 <th>Gaji</th>
+                                                <th>Punya Balita</th>
+                                                <th>Usia</th>
+                                                <th>Anak Sekolah</th>
+                                                <th>PNS</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -50,8 +53,25 @@
                                             <tr>
                                                 <td><?php echo $value->nama; ?></td>
                                                 <td><?php echo $value->alamat; ?></td>
-                                                <td><?php echo $value->is_pns == '0' ? "Non PNS" : "PNS"; ?></td>
                                                 <td><?php echo "Rp ".number_format($value->gaji); ?></td>
+                                                <td><?php echo $value->hasBalita == '0' ? "Tidak Punya" : "Punya"; ?></td>
+                                                <td>
+													<?php 
+													switch ($value->umur) {
+														case 1:
+															echo "25-35 th";
+															break;
+														case 2:
+															echo "36-59 th";
+															break;
+														default:
+															echo "60 keatas";
+															break;
+													}
+													?>
+												</td>
+                                                <td><?php echo $value->sekolah; ?></td>
+                                                <td><?php echo $value->is_pns == '0' ? "Non PNS" : "PNS"; ?></td>
                                                 <td>
 													<a href="<?php echo base_url(); ?>warga/edit/<?php echo $value->id; ?>" class="btn btn-sm btn-warning">Edit</a>
 													<a href="<?php echo base_url(); ?>warga/destroy/<?php echo $value->id; ?>" class="btn btn-sm btn-danger">Hapus</a>

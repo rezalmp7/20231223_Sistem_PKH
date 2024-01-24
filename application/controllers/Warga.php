@@ -53,9 +53,12 @@ class Warga extends CI_Controller {
 			'alamat' => $post['alamat'],
 			'rt' => $post['rt'],
 			'rw' => $post['rw'],
-			'is_pns' => $is_pns,
+			'is_pns' => $post['isPNS'],
+			'hasBalita' => $post['hasBalita'],
+			'umur' => $post['umur'],
+			'sekolah' => $post['sekolah'],
+			'pekerjaan' => $post['pekerjaan'],
 			'gaji' => $post['gaji'],
-
 		);
 
 		$this->db->insert('wargas', $data);
@@ -73,12 +76,6 @@ class Warga extends CI_Controller {
 		$post = $this->input->post();
 		$warga = $this->db->get_where('wargas', ['id' => $id])->row();
 
-		if(isset($post['pns']) && $post['pns'] == 'on') {
-			$is_pns = true;
-		} else {
-			$is_pns = false;
-		}
-
 		$set = array(
 			'nama' => $post['nama'],
 			'tempat_lahir' => $post['tempat_lahir'],
@@ -86,9 +83,12 @@ class Warga extends CI_Controller {
 			'alamat' => $post['alamat'],
 			'rt' => $post['rt'],
 			'rw' => $post['rw'],
-			'is_pns' => $is_pns,
+			'is_pns' => $post['isPNS'],
+			'hasBalita' => $post['hasBalita'],
+			'umur' => $post['umur'],
+			'sekolah' => $post['sekolah'],
+			'pekerjaan' => $post['pekerjaan'],
 			'gaji' => $post['gaji'],
-
 		);
 
 		$this->db->set($set);
@@ -98,8 +98,8 @@ class Warga extends CI_Controller {
 		redirect(base_url('/warga'));
 	}
 	public function destroy($id) {
-		$this->db->delete('users', array('id' => $id));
+		$this->db->delete('wargas', array('id' => $id));
 	
-		redirect(base_url('/user'));
+		redirect(base_url('/warga'));
 	}
 }
