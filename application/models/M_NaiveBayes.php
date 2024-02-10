@@ -4,15 +4,22 @@ class M_NaiveBayes extends CI_Model {
 	// private $jumTrue = 0;
 	// private $jumFalse = 0;
 	// private $jumData = 0;
-	private $pegawai = [];
+	private $warga = [];
 
 	function __construct()
 	{
-		$this->pegawai = $this->db->get('sample_data')->result_array();
+		$this->warga = $this->db->get('sample_data')->result_array();
 	}
 
-	function calculate($a1, $a2) {
-
+	function calculate(
+		$a1, // isPns
+		$a2, // Gaji
+		$a3, // hasBalita
+		$a4, // Umur
+		$a5, // Sekolah
+		$a6 // Perjaan
+	) {
+		// echo "<pre>";
 		$jumTrue = $this->sumTrue();
 		$jumFalse = $this->sumFalse();
 		$jumData = $this->sumData();
@@ -20,14 +27,40 @@ class M_NaiveBayes extends CI_Model {
 		//TRUE
 		$isPns = $this->probIsPns($a1,1);
 		$gaji = $this->probGaji($a2,1);
+		$hasBalita = $this->probHasBalita($a3,1);
+		$umur = $this->probUmur($a4,1);
+		$sekolah = $this->probSekolah($a5,1);
+		$pekerjaan = $this->probPekerjaan($a6,1);
 
 		//FALSE
 		$isPns2 = $this->probIsPns($a1,0);
 		$gaji2 = $this->probGaji($a2,0);
+		$hasBalita2 = $this->probHasBalita($a3,0);
+		$umur2 = $this->probUmur($a4,0);
+		$sekolah2 = $this->probSekolah($a5,0);
+		$pekerjaan2 = $this->probPekerjaan($a6,0);
 
 		//result
-		$paT = $this->hasilTrue($jumTrue,$jumData,$isPns,$gaji);
-		$paF = $this->hasilFalse($jumTrue,$jumData,$isPns2,$gaji2);
+		$paT = $this->hasilTrue(
+			$jumTrue,
+			$jumData,
+			$isPns,
+			$gaji,
+			$hasBalita,
+			$umur,
+			$sekolah,
+			$pekerjaan,
+		);
+		$paF = $this->hasilFalse(
+			$jumTrue,
+			$jumData,
+			$isPns2,
+			$gaji2,
+			$hasBalita2,
+			$umur2,
+			$sekolah2,
+			$pekerjaan2,
+		);
 
 		$result = $this->perbandingan($paT,$paF);
 
@@ -38,7 +71,7 @@ class M_NaiveBayes extends CI_Model {
 	=================================================================*/
 	function sumTrue()
 	{
-		$hasil = $this->pegawai;
+		$hasil = $this->warga;
 
 		$t = 0;
 		foreach($hasil as $hasil)
@@ -53,7 +86,7 @@ class M_NaiveBayes extends CI_Model {
 
 	function sumFalse()
 	{
-		$hasil = $this->pegawai;
+		$hasil = $this->warga;
 
 		$t = 0;
 		foreach($hasil as $hasil)
@@ -67,7 +100,7 @@ class M_NaiveBayes extends CI_Model {
 
 	function sumData()
 	{
-		$hasil = $this->pegawai;
+		$hasil = $this->warga;
 		return count($hasil);
 	}
 
@@ -78,7 +111,7 @@ class M_NaiveBayes extends CI_Model {
 	=================================================================*/
 	function probIsPns($is_pns,$status)
 	{
-		$hasil = $this->pegawai;
+		$hasil = $this->warga;
 
 		$t = 0;
 		foreach ($hasil as $hasil) {
@@ -93,20 +126,24 @@ class M_NaiveBayes extends CI_Model {
 
 	function probGaji($gaji,$status) //type = 0 kurang dari; 1 lebih dari
 	{
-		$hasil = $this->pegawai;
-
+		$hasil = $this->warga;
 		$t = 0;
+		if($gaji >= 500000) {
+			$type_gaji = 1;
+		} else {
+			$type_gaji = 0;
+		}
 		foreach ($hasil as $hasil) {
 			if($hasil['type_gaji'] == 1) {
-				if($hasil['gaji'] <= $gaji && $hasil['status'] == $status){
+				if($hasil['gaji'] <= $type_gaji && $hasil['status'] == $status){
 					$t += 1;
-				}else if($hasil['gaji'] <= $gaji && $hasil['status'] == $status){
+				}else if($hasil['gaji'] <= $type_gaji && $hasil['status'] == $status){
 					$t +=1;
 				}
 			} else {
-				if($hasil['gaji'] > $gaji && $hasil['status'] == $status){
+				if($hasil['gaji'] > $type_gaji && $hasil['status'] == $status){
 					$t += 1;
-				}else if($hasil['gaji'] > $gaji && $hasil['status'] == $status){
+				}else if($hasil['gaji'] > $type_gaji && $hasil['status'] == $status){
 					$t +=1;
 				}
 			}
@@ -114,45 +151,60 @@ class M_NaiveBayes extends CI_Model {
 		return $t;
 	}
 
-	function probBeratB($bb,$status)
+	function probHasBalita($hasBalita,$status)
 	{
-		$hasil = $this->pegawai;
+		$hasil = $this->warga;
 
 		$t = 0;
 		foreach ($hasil as $hasil) {
-			if($hasil['berat_badan'] == $bb && $hasil['status'] == $status){
+			if($hasil['hasBalita'] == $hasBalita && $hasil['status'] == $status){
 				$t += 1;
-			}else if($hasil['berat_badan'] == $bb && $hasil['status'] == $status){
+			}else if($hasil['hasBalita'] == $hasBalita && $hasil['status'] == $status){
 				$t +=1;
 			}
 		}
 		return $t;
 	}
 
-	function probPendidikan($pendidikan,$status)
+	function probUmur($umur,$status)
 	{
-		$hasil = $this->pegawai;
+		$hasil = $this->warga;
 
 		$t = 0;
 		foreach ($hasil as $hasil) {
-			if($hasil['pendidikan'] == $pendidikan && $hasil['status'] == $status){
+			if($hasil['umur'] == $umur && $hasil['status'] == $status){
 				$t += 1;
-			}else if($hasil['pendidikan'] == $pendidikan && $hasil['status'] == $status){
+			}else if($hasil['umur'] == $umur && $hasil['status'] == $status){
 				$t +=1;
 			}
 		}
 		return $t;
 	}
 
-	function probKesehatan($kesehatan,$status)
+	function probSekolah($sekolah,$status)
 	{
-		$hasil = $this->pegawai;
+		$hasil = $this->warga;
 
 		$t = 0;
 		foreach ($hasil as $hasil) {
-			if($hasil['kesehatan'] == $kesehatan && $hasil['status'] == $status){
+			if($hasil['sekolah'] == $sekolah && $hasil['status'] == $status){
 				$t += 1;
-			}else if($hasil['kesehatan'] == $kesehatan && $hasil['status'] == $status){
+			}else if($hasil['sekolah'] == $sekolah && $hasil['status'] == $status){
+				$t +=1;
+			}
+		}
+		return $t;
+	}
+
+	function probPekerjaan($pekerjaan,$status)
+	{
+		$hasil = $this->warga;
+
+		$t = 0;
+		foreach ($hasil as $hasil) {
+			if($hasil['pekerjaan'] == $pekerjaan && $hasil['status'] == $status){
+				$t += 1;
+			}else if($hasil['pekerjaan'] == $pekerjaan && $hasil['status'] == $status){
 				$t +=1;
 			}
 		}
@@ -166,28 +218,37 @@ class M_NaiveBayes extends CI_Model {
 	$sT   : jumlah data yang bernilai true ( sumTrue )
 	$sF   : jumlah data yang bernilai false ( sumFalse )
 	$sD   : jumlah data pada data latih ( sumData )
+	$pP   : jumlah probabilitas PNS ( probIsPns )
+	$pG   : jumlah probabilitas Gaji ( probGaji )
+	$pB  : jumlah probabilitas Has Balita ( probHasBalita )
 	$pU   : jumlah probabilitas umur ( probUmur )
-	$pT   : jumlah probabilitas tinggi ( probTinggi )
-	$pBB  : jumlah probabilitas berat badan ( probBB )
-	$pK   : jumlah probabilitas kesehatan ( probKesehatan )
-	$pP   : jumlah probabilitas pendidikan (probPendidikan )
+	$pS  : jumlah probabilitas Sekolah ( probSekolah )
+	$pK   : jumlah probabilitas Kerja (probPekerjaan )
 	==================================================================*/
 
-	function hasilTrue($sT = 0 , $sD = 0 , $pP = 0 ,$pG = 0)
+	function hasilTrue($sT = 0 , $sD = 0 , $pP = 0 ,$pG = 0, $pB = 0, $pU = 0, $pS = 0, $pK = 0)
 	{
 		$paTrue = $sT / $sD;
 		$p1 = $pP / $sT;
 		$p2 = $pG / $sT;
-		$hsl = $paTrue * $p1 * $p2;
+		$p3 = $pB / $sT;
+		$p4 = $pU / $sT;
+		$p5 = $pS / $sT;
+		$p6 = $pK / $sT;
+		$hsl = $paTrue * $p1 * $p2 * $p3 * $p4 * $p5 * $p6;
 		return $hsl;
 	}
 
-	function hasilFalse($sF = 0 , $sD = 0 , $pP = 0 ,$pG = 0)
+	function hasilFalse($sF = 0 , $sD = 0 , $pP = 0 ,$pG = 0, $pB = 0, $pU = 0, $pS = 0, $pK = 0)
 	{
 		$paFalse = $sF / $sD;
 		$p1 = $pP / $sF;
 		$p2 = $pG / $sF;
-		$hsl = $paFalse * $p1 * $p2;
+		$p3 = $pB / $sF;
+		$p4 = $pU / $sF;
+		$p5 = $pS / $sF;
+		$p6 = $pK / $sF;
+		$hsl = $paFalse * $p1 * $p2 * $p3 * $p4 * $p5 * $p6;
 		return $hsl;
 	}
 

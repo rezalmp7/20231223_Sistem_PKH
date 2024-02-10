@@ -55,21 +55,7 @@
                                                 <td><?php echo $value->alamat; ?></td>
                                                 <td><?php echo "Rp ".number_format($value->gaji); ?></td>
                                                 <td><?php echo $value->hasBalita == '0' ? "Tidak Punya" : "Punya"; ?></td>
-                                                <td>
-													<?php 
-													switch ($value->umur) {
-														case 1:
-															echo "25-35 th";
-															break;
-														case 2:
-															echo "36-59 th";
-															break;
-														default:
-															echo "60 keatas";
-															break;
-													}
-													?>
-												</td>
+                                                <td><?php echo $value->umur == 1 ? "Diatas 45 Tahun" : "Dibawah 45 tahun"; ?></td>
                                                 <td><?php echo $value->sekolah; ?></td>
                                                 <td><?php echo $value->is_pns == '0' ? "Non PNS" : "PNS"; ?></td>
                                                 <td>

@@ -211,12 +211,12 @@ Highcharts.chart('chartContainer', {
         zoomType: 'xy'
     },
     title: {
-        text: 'Klasterisasi Perbandingan Jumlah Guru dan Jumlah Siswa per Provinsi '
+        text: 'Klasterisasi Perbandingan PNS dan Gaji Warga Desa '
     },
     xAxis: {
         title: {
             enabled: true,
-            text: 'Jumlah Guru'
+            text: 'PNS'
         },
         startOnTick: true,
         endOnTick: true,
@@ -224,7 +224,7 @@ Highcharts.chart('chartContainer', {
     },
     yAxis: {
         title: {
-            text: 'Jumlah Siswa'
+            text: 'Gaji'
         }
     },
     plotOptions: {
@@ -247,7 +247,7 @@ Highcharts.chart('chartContainer', {
             },
             tooltip: {
                 headerFormat: '<b>{series.name} {point.key}</b><br>',
-                pointFormat: '{point.x} guru, {point.y} siswa'
+                pointFormat: '{point.x} pns, {point.y} gaji'
             }
         }
     },

@@ -27,7 +27,11 @@ class SampleData extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['sample_data'] = $this->db->get('sample_data')->result();
+		$data['sample_data'] = $this->db->select("*")
+			->from('sample_data')
+			->order_by('id DESC')
+			->get()
+			->result();
 		$this->load->view('layouts/header');
 		$this->load->view('sample_data/index', $data);
 		$this->load->view('layouts/footer');
@@ -41,9 +45,13 @@ class SampleData extends CI_Controller {
 		$post = $this->input->post();
 
 		$data = array(
-			'is_pns' => $post['pns'],
+			'is_pns' => $post['isPNS'],
 			'gaji' => 5000000,
 			'type_gaji' => $post['type_gaji'],
+			'hasBalita' => $post['hasBalita'],
+			'umur' => $post['umur'],
+			'sekolah' => $post['sekolah'],
+			'pekerjaan' => $post['pekerjaan'],
 			'status' => $post['status']
 		);
 
@@ -60,30 +68,28 @@ class SampleData extends CI_Controller {
 	}
 	public function update($id) {
 		$post = $this->input->post();
-		$user = $this->db->get_where('users', ['id' => $id])->row();
-
-		if($post['password'] != '' || $post['password'] != null) {
-			$password = md5($post['password']);
-		} else {
-			$password = $user->password;
-		}
+		$user = $this->db->get_where('sample_data', ['id' => $id])->row();
 
 		$set = array(
-			'nama' => $post['nama'],
-			'username' => $post['username'],
-			'password' => $password,
-			'level' => $post['level']
+			'is_pns' => $post['isPNS'],
+			'gaji' => 5000000,
+			'type_gaji' => $post['type_gaji'],
+			'hasBalita' => $post['hasBalita'],
+			'umur' => $post['umur'],
+			'sekolah' => $post['sekolah'],
+			'pekerjaan' => $post['pekerjaan'],
+			'status' => $post['status']
 		);
 
 		$this->db->set($set);
 		$this->db->where('id', $id);
-		$this->db->update('users'); 
+		$this->db->update('sample_data'); 
 
-		redirect(base_url('/user'));
+		redirect(base_url('/sampleData'));
 	}
 	public function destroy($id) {
-		$this->db->delete('users', array('id' => $id));
+		$this->db->delete('sample_data', array('id' => $id));
 	
-		redirect(base_url('/user'));
+		redirect(base_url('/sampleData'));
 	}
 }

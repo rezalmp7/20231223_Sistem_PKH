@@ -44,7 +44,24 @@ class Dashboard extends CI_Controller {
 		// echo "<pre>";
 		foreach ($wargas as $key => $value) {
 			$value;
-			$value['status'] = $this->M_NaiveBayes->calculate($value['is_pns'], $value['gaji']);
+			$sekolah = 0;
+			if($value['sekolah'] == "belumSekolah" || 
+				$value['sekolah'] == 'sd' || 
+				$value['sekolah'] == 'smp' ||
+				$value['sekolah'] == 'sma'
+			) {
+				$sekolah = 1;
+			} else {
+				$sekolah = 0;
+			}
+			$value['status'] = $this->M_NaiveBayes->calculate(
+				$value['is_pns'], 
+				$value['gaji'],
+				$value['hasBalita'],
+				$value['umur'],
+				$sekolah,
+				1
+			);
 			$data['warga'][] = $value;
 
 			if(!isset($dataRt[$value['rw'].$value['rt']])) {

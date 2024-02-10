@@ -35,8 +35,13 @@
                                     <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
                                         <thead>
                                             <tr>
+                                                <th>No</th>
                                                 <th>PNS</th>
                                                 <th>Gaji</th>
+                                                <th>Balita</th>
+                                                <th>Umur</th>
+                                                <th>Sekolah</th>
+                                                <th>Pekerjaan</th>
                                                 <th>Status</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -47,8 +52,13 @@
 											foreach ($sample_data as $key => $value) {
 											?>
                                             <tr>
+												<td><?php echo $key+1; ?></td>
                                                 <td><?php echo $value->is_pns == 1 ? "PNS" : "Non PNS"; ?></td>
                                                 <td><?php echo $value->type_gaji == 1 ? ">=".$value->gaji : "<".$value->gaji; ?></td>
+                                                <td><?php echo $value->hasBalita == 1 ? "Punya" : "Tidak Punya"; ?></td>
+                                                <td><?php echo $value->umur == 1 ? "Diatas 45 Tahun" : "Dibawah 45 tahun"; ?></td>
+                                                <td><?php echo $value->sekolah == 1 ? "Anak Sekolah" : "Anak Tidak Sekolah"; ?></td>
+                                                <td><?php echo $value->pekerjaan == 1 ? "Bekerja" : "Tidak Bekerja"; ?></td>
                                                 <td><?php echo $value->status ? "Dapat Bantuan" : "Tidak Dapat"; ?></td>
                                                 <td>
 													<a href="<?php echo base_url(); ?>sampleData/edit/<?php echo $value->id; ?>" class="btn btn-sm btn-warning">Edit</a>

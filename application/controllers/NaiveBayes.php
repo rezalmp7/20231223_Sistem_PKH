@@ -35,35 +35,57 @@ class NaiveBayes extends CI_Controller {
 		// echo "<pre>";
 		foreach ($warga as $key => $value) {
 			$value;
-			$value['status'] = $this->M_NaiveBayes->calculate($value['is_pns'], $value['gaji']);
+			$sekolah = 0;
+			if($value['sekolah'] == "belumSekolah" || 
+				$value['sekolah'] == 'sd' || 
+				$value['sekolah'] == 'smp' ||
+				$value['sekolah'] == 'sma'
+			) {
+				$sekolah = 1;
+			} else {
+				$sekolah = 0;
+			}
+			$value['status'] = $this->M_NaiveBayes->calculate(
+				$value['is_pns'], 
+				$value['gaji'],
+				$value['hasBalita'],
+				$value['umur'],
+				$sekolah,
+				1,
+			);
+			// if($value['hasBalita'] == 1) {
+			// 	$value['status'] = "DITERIMA"
+			// }
 			$data['warga'][] = $value;
-
 		}
-
-		// print_r($data['warga']);
+		
 		$this->load->view('layouts/header');
 		$this->load->view('naiveBayes/index', $data);
 		$this->load->view('layouts/footer');
 	}
 
-	public function show() {
+	public function show($id) {
+		$warga = $this->db->get_where('wargas', array('id' => $id))->result_array();
+
 		$jumTrue = $this->M_NaiveBayes->sumTrue();
 		$jumFalse = $this->M_NaiveBayes->sumFalse();
 		$jumData = $this->M_NaiveBayes->sumData();
 
-		$a1 = 0;
-		$a2 = 2000000;
-
 		//TRUE
-		$isPns = $this->M_NaiveBayes->probIsPns($a1,1);
-		$gaji = $this->M_NaiveBayes->probGaji($a2,1);
+		$isPns = $this->probIsPns($warga->isPns,1);
+		$gaji = $this->probGaji($a2,1);
+		$hasBalita = $this->probHasBalita($a3,1);
+		$umur = $this->probUmur($a4,1);
+		$sekolah = $this->probSekolah($a5,1);
+		$pekerjaan = $this->probPekerjaan($a6,1);
 
 		//FALSE
-		$isPns2 = $this->M_NaiveBayes->probIsPns($a1,0);
-		$gaji2 = $this->M_NaiveBayes->probGaji($a2,0);
-		// $bb2 = $this->M_NaiveBayes->probBeratB($a3,0);
-		// $kesehatan2 = $this->M_NaiveBayes->probKesehatan($a4,0);
-		// $pendidikan2 = $this->M_NaiveBayes->probPendidikan($a5,0);
+		$isPns2 = $this->probIsPns($a1,0);
+		$gaji2 = $this->probGaji($a2,0);
+		$hasBalita2 = $this->probHasBalita($a3,0);
+		$umur2 = $this->probUmur($a4,0);
+		$sekolah2 = $this->probSekolah($a5,0);
+		$pekerjaan2 = $this->probPekerjaan($a6,0);
 
 		//result
 		$paT = $this->M_NaiveBayes->hasilTrue($jumTrue,$jumData,$isPns,$gaji);
