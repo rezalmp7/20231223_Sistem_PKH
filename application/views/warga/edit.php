@@ -74,13 +74,13 @@
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="hasBalita" value="1" id="hasBalitaYa" <?php echo $warga->hasBalita == 1 ? "checked" : ""; ?> required>
+													<input class="form-check-input" type="radio" name="hasBalita" value="1" id="hasBalitaYa" <?php if($warga->hasBalita == 1) echo "checked"; ?> required>
 													<label class="form-check-label" for="hasBalitaYa">
 														Ya
 													</label>
 												</div>
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="hasBalita" value="0" id="hasBalitaTidak" <?php echo $warga->hasBalita == 0 ? "checked" : ""; ?> required>
+													<input class="form-check-input" type="radio" name="hasBalita" value="0" id="hasBalitaTidak" <?php if($warga->hasBalita == 0) echo "checked"; ?> required>
 													<label class="form-check-label" for="hasBalitaTidak">
 														Tidak
 													</label>
@@ -94,13 +94,13 @@
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="isPNS" value="1" id="isPNSYa" <?php echo $warga->is_pns == 1 ? "checked" : ""; ?> required>
+													<input class="form-check-input" type="radio" name="isPNS" value="1" id="isPNSYa" <?php if($warga->is_pns == 1) echo "checked"; ?> required>
 													<label class="form-check-label" for="isPNSYa">
 														Ya
 													</label>
 												</div>
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="isPNS" value="0" id="isPNSTidak" <?php echo $warga->is_pns == 0 ? "checked" : ""; ?> required>
+													<input class="form-check-input" type="radio" name="isPNS" value="0" id="isPNSTidak" <?php if($warga->is_pns == 0) echo "checked"; ?> required>
 													<label class="form-check-label" for="isPNSTidak">
 														Tidak
 													</label>
@@ -110,17 +110,17 @@
 										
 										<div class="mb-3">
 											<div>
-												Apakah Usia Anda diatas 45 Tahun ?
+												Apakah Usia Anda diatas 45 Tahun ? ?
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="umur" value="1" id="umurYa" <?php echo $warga->umur == 1 ? "checked" : ""; ?> required>
+													<input class="form-check-input" type="radio" name="umur" value="1" id="umurYa" <?php if($warga->umur == 1) echo "checked"; ?> required>
 													<label class="form-check-label" for="umurYa">
 														Ya
 													</label>
 												</div>
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="umur" value="0" id="umurTidak" <?php echo $warga->umur == 0 ? "checked" : ""; ?> required>
+													<input class="form-check-input" type="radio" name="umur" value="0" id="umurTidak" <?php if($warga->umur == 0) echo "checked"; ?> required>
 													<label class="form-check-label" for="umurTidak">
 														Tidak
 													</label>
@@ -134,33 +134,15 @@
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="belumSekolah" id="sekolahBelumSekolah" <?php echo $warga->sekolah == "belumSekolah" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="sekolahBelumSekolah">
-														Belum Sekolah
+													<input class="form-check-input" type="radio" name="sekolah" value="1" id="sekolahYa" <?php if($warga->sekolah == 1) echo "checked"; ?> required>
+													<label class="form-check-label" for="sekolahYa">
+														Ya
 													</label>
 												</div>
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="sd" id="sekolahSd" <?php echo $warga->sekolah == "sd" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="sekolahSd">
-														SD
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="smp" id="sekolahSmp" <?php echo $warga->sekolah == "smp" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="sekolahSmp">
-														SMP
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="sma" id="sekolahSma" <?php echo $warga->sekolah == "sma" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="sekolahSma">
-														SMA
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="lulus" id="sekolahLulus" <?php echo $warga->sekolah == "lulus" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="sekolahLulus">
-														Lulus
+													<input class="form-check-input" type="radio" name="sekolah" value="0" id="sekolahTidak" <?php if($warga->sekolah == 0) echo "checked"; ?> required>
+													<label class="form-check-label" for="sekolahTidak">
+														Tidak
 													</label>
 												</div>
 											</div>
@@ -168,25 +150,19 @@
 
 										<div class="mb-3">
 											<div>
-												Apa pekerjaan saudara/i sekarang ?
+												Apa Anda Sedang Bekerja?
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="pekerjaan" value="petani" id="pekerjaanPetani" <?php echo $warga->pekerjaan == "petani" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="pekerjaanPetani">
-														Petani
+													<input class="form-check-input" type="radio" name="pekerjaan" value="1" id="pekerjaanYa" <?php if($warga->pekerjaan == 1) echo "checked"; ?> required>
+													<label class="form-check-label" for="pekerjaanYa">
+														Ya
 													</label>
 												</div>
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="pekerjaan" value="wiraswasta" id="pekerjaanWiraswasta" <?php echo $warga->pekerjaan == "wiraswasta" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="pekerjaanWiraswasta">
-														Wiraswasta
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="pekerjaan" value="buruh pabrik" id="pekerjaanBuruhPabrik" <?php echo $warga->pekerjaan == "buruh pabrik" ? "checked" : ""; ?> required>
-													<label class="form-check-label" for="pekerjaanBuruhPabrik">
-														Buruh Pabrik
+													<input class="form-check-input" type="radio" name="pekerjaan" value="0" id="pekerjaanTidak" <?php if($warga->pekerjaan == 0) echo "checked"; ?> required>
+													<label class="form-check-label" for="pekerjaanTidak">
+														Tidak
 													</label>
 												</div>
 											</div>

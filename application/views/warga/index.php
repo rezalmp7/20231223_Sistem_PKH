@@ -31,8 +31,9 @@
                                 <div class="card-header">
                                     <h4 class="header-title d-inline">Data Warga</h4>
 									<a href="<?php echo base_url(); ?>warga/create" class="btn btn-sm btn-success float-end">Tambah</a>
-                                <div class="card-body">
-                                    <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table id="basic-datatable" class="table table-striped nowrap w-100">
                                         <thead>
                                             <tr>
                                                 <th>Nama</th>
@@ -56,7 +57,7 @@
                                                 <td><?php echo "Rp ".number_format($value->gaji); ?></td>
                                                 <td><?php echo $value->hasBalita == '0' ? "Tidak Punya" : "Punya"; ?></td>
                                                 <td><?php echo $value->umur == 1 ? "Diatas 45 Tahun" : "Dibawah 45 tahun"; ?></td>
-                                                <td><?php echo $value->sekolah; ?></td>
+                                                <td><?php echo $value->sekolah == 1 ? "Sekolah" : "Lulus/Belum"; ?></td>
                                                 <td><?php echo $value->is_pns == '0' ? "Non PNS" : "PNS"; ?></td>
                                                 <td>
 													<a href="<?php echo base_url(); ?>warga/edit/<?php echo $value->id; ?>" class="btn btn-sm btn-warning">Edit</a>

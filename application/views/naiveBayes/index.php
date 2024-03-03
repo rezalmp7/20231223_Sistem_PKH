@@ -30,14 +30,18 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="header-title d-inline">Data Naive Bayes</h4>
-                                <div class="card-body">
-                                    <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                <div class="card-body table-responsive">
+                                    <table id="basic-datatable" class="table table-striped nowrap w-100">
                                         <thead>
                                             <tr>
                                                 <th>Nama</th>
-                                                <th>PNS</th>
+                                                <th>Alamat</th>
                                                 <th>Gaji</th>
-												<th>Status</th>
+                                                <th>Punya Balita</th>
+                                                <th>Usia</th>
+                                                <th>Anak Sekolah</th>
+                                                <th>PNS</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
 
@@ -47,8 +51,12 @@
 											?>
                                             <tr>
                                                 <td><?php echo $value['nama']; ?></td>
-                                                <td><?php echo $value['is_pns'] == '0' ? "Non PNS" : "PNS"; ?></td>
+                                                <td><?php echo $value['alamat']; ?></td>
                                                 <td><?php echo "Rp ".number_format($value['gaji']); ?></td>
+                                                <td><?php echo $value['hasBalita'] == '0' ? "Tidak Punya" : "Punya"; ?></td>
+                                                <td><?php echo $value['umur'] == 1 ? "Diatas 45 Tahun" : "Dibawah 45 tahun"; ?></td>
+                                                <td><?php echo $value['sekolah'] == 1 ? "Sekolah" : "Lulus/Belum"; ?></td>
+                                                <td><?php echo $value['is_pns'] == '0' ? "Non PNS" : "PNS"; ?></td>
                                                 <td>
 													<?php
 													if($value['status'][0] == "DITERIMA") {

@@ -60,9 +60,18 @@ class Dashboard extends CI_Controller {
 				$value['hasBalita'],
 				$value['umur'],
 				$sekolah,
-				1
+				1,
 			);
+			// if($value['hasBalita'] == 1) {
+			// 	$value['status'] = "DITERIMA"
+			// }
 			$data['warga'][] = $value;
+
+			if($value['status'][0] == "DITERIMA") {
+				$data['countDapatBantuan'] = $data['countDapatBantuan']+1;
+			} else {
+				$data['countNonBantuan'] = $data['countNonBantuan']+1;
+			}
 
 			if(!isset($dataRt[$value['rw'].$value['rt']])) {
 				$dataRt[$value['rw'].$value['rt']]['rt'] = $value['rt'];
@@ -99,9 +108,11 @@ class Dashboard extends CI_Controller {
 		$data['warga'] = $data['warga'];
 		$data['labelGrafik'] = $labelGrafik;
 		$data['dataGrafik'] = $dataGrafik;
+
 		// echo "<pre>";
 		// print_r($data);
 		// echo $this->session->userdata('level');
+
 		$this->load->view('layouts/header');
 		$this->load->view('dashboard/index', $data);
 		$this->load->view('layouts/footer');

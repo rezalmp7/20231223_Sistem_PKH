@@ -110,7 +110,7 @@
 										
 										<div class="mb-3">
 											<div>
-												Apakah Usia Anda diatas 45 Tahun ?
+												Apakah Usia Anda diatas 45 Tahun ? ?
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
@@ -134,33 +134,15 @@
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="belumSekolah" id="sekolahBelumSekolah" checked required>
-													<label class="form-check-label" for="sekolahBelumSekolah">
-														Belum Sekolah
+													<input class="form-check-input" type="radio" name="sekolah" value="1" id="sekolahYa" checked required>
+													<label class="form-check-label" for="sekolahYa">
+														Ya
 													</label>
 												</div>
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="sd" id="sekolahSd" required>
-													<label class="form-check-label" for="sekolahSd">
-														SD
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="smp" id="sekolahSmp" required>
-													<label class="form-check-label" for="sekolahSmp">
-														SMP
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="sma" id="sekolahSma" required>
-													<label class="form-check-label" for="sekolahSma">
-														SMA
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="sekolah" value="lulus" id="sekolahSma" required>
-													<label class="form-check-label" for="sekolahSma">
-														Lulus
+													<input class="form-check-input" type="radio" name="sekolah" value="0" id="sekolahTidak" required>
+													<label class="form-check-label" for="sekolahTidak">
+														Tidak
 													</label>
 												</div>
 											</div>
@@ -168,25 +150,19 @@
 
 										<div class="mb-3">
 											<div>
-												Apa pekerjaan saudara/i sekarang ?
+												Apa Anda Sedang Bekerja?
 											</div>
 											<div class="row px-3">
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="pekerjaan" value="petani" id="pekerjaanPetani" checked required>
-													<label class="form-check-label" for="pekerjaanPetani">
-														Petani
+													<input class="form-check-input" type="radio" name="pekerjaan" value="1" id="pekerjaanYa" checked required>
+													<label class="form-check-label" for="pekerjaanYa">
+														Ya
 													</label>
 												</div>
 												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="pekerjaan" value="wiraswasta" id="pekerjaanWiraswasta" required>
-													<label class="form-check-label" for="pekerjaanWiraswasta">
-														Wiraswasta
-													</label>
-												</div>
-												<div class="form-check col d-block">
-													<input class="form-check-input" type="radio" name="pekerjaan" value="buruh pabrik" id="pekerjaanBuruhPabrik" required>
-													<label class="form-check-label" for="pekerjaanBuruhPabrik">
-														Buruh Pabrik
+													<input class="form-check-input" type="radio" name="pekerjaan" value="0" id="pekerjaanTidak" required>
+													<label class="form-check-label" for="pekerjaanTidak">
+														Tidak
 													</label>
 												</div>
 											</div>
