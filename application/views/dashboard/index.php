@@ -116,43 +116,51 @@
                                         <div id="yearly-sales-collapse" class="collapse show">
     
                                             <div class="table-responsive p-3">
-												<table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
-													<thead>
-														<tr>
-															<th>Nama</th>
-															<th>PNS</th>
-															<th>Gaji</th>
-															<th>Status</th>
-														</tr>
-													</thead>
+                                                <table id="basic-datatable" class="table table-striped nowrap w-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Alamat</th>
+                                                            <th>Gaji</th>
+                                                            <th>Punya Balita</th>
+                                                            <th>Usia</th>
+                                                            <th>Anak Sekolah</th>
+                                                            <th>PNS</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
 
-													<tbody>
-														<?php
-														foreach ($dapatBantuan as $key => $value) {
-														?>
-														<tr>
-															<td><?php echo $value['nama']; ?></td>
-															<td><?php echo $value['is_pns'] == '0' ? "Non PNS" : "PNS"; ?></td>
-															<td><?php echo "Rp ".number_format($value['gaji']); ?></td>
-															<td>
-																<?php
-																if($value['status'][0] == "DITERIMA") {
-																?>
-																<span class="badge bg-primary text-light fs-6"><i class="ri-cash-line"></i> Dapat Bantuan</span>
-																<?php
-																} else {
-																?>
-																<span class="badge bg-danger text-light fs-6"><i class="ri-close-line"></i> Tidak Dapat Bantuan</span>
-																<?php
-																}
-																?>
-															</td>
-														</tr>
-														<?php
-														}
-														?>
-													</tbody>
-												</table>
+                                                    <tbody>
+                                                        <?php
+                                                        foreach ($warga as $key => $value) {
+                                                        ?>
+                                                        <tr>
+                                                            <td><?php echo $value['nama']; ?></td>
+                                                            <td><?php echo $value['alamat']; ?></td>
+                                                            <td><?php echo "Rp ".number_format($value['gaji']); ?></td>
+                                                            <td><?php echo $value['hasBalita'] == '0' ? "Tidak Punya" : "Punya"; ?></td>
+                                                            <td><?php echo $value['umur'] == 1 ? "Diatas 45 Tahun" : "Dibawah 45 tahun"; ?></td>
+                                                            <td><?php echo $value['sekolah'] == 1 ? "Sekolah" : "Lulus/Belum"; ?></td>
+                                                            <td><?php echo $value['is_pns'] == '0' ? "Non PNS" : "PNS"; ?></td>
+                                                            <td>
+                                                                <?php
+                                                                if($value['status'][0] == "DITERIMA") {
+                                                                ?>
+                                                                <span class="badge bg-primary text-light fs-6"><i class="ri-cash-line"></i> Dapat Bantuan</span>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                <span class="badge bg-danger text-light fs-6"><i class="ri-close-line"></i> Tidak Dapat Bantuan</span>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>        
                                         </div>
                                     </div>                           
