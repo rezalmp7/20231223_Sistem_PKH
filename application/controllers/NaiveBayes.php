@@ -64,6 +64,23 @@ class NaiveBayes extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
+	public function send() {
+		$post = $this->input->post();
+
+		$this->db->empty_table('bantuan');
+		foreach ($post['id'] as $key => $value) {
+			$data = array(
+				'wargas_id' => $post['id'][$key],
+				'status' => $post['status'][$key],
+				'tgl_pendataan' => date("YmdHis")
+			);
+
+			$this->db->insert('bantuan', $data);
+		}
+
+		redirect(base_url('laporan'));
+	}
+
 	public function show($id) {
 		$warga = $this->db->get_where('wargas', array('id' => $id))->result_array();
 

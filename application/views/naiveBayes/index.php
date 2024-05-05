@@ -30,54 +30,64 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="header-title d-inline">Data Naive Bayes</h4>
-                                <div class="card-body table-responsive">
-                                    <table id="basic-datatable" class="table table-striped nowrap w-100">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama</th>
-                                                <th>Alamat</th>
-                                                <th>Gaji</th>
-                                                <th>Punya Balita</th>
-                                                <th>Usia</th>
-                                                <th>Anak Sekolah</th>
-                                                <th>PNS</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
+                                    <form method="POST" action="<?php echo base_url(); ?>naiveBayes/send">
+                                        <div class="my-3 mx-0 p-0">
+                                            <button class="btn btn-sm btn-success float-end" type="submid">Kirim</button>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="card-body table-responsive">
+                                            <table id="basic-datatable" class="table table-striped nowrap w-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nama</th>
+                                                        <th>Alamat</th>
+                                                        <th>Gaji</th>
+                                                        <th>Punya Balita</th>
+                                                        <th>Usia</th>
+                                                        <th>Anak Sekolah</th>
+                                                        <th>PNS</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
 
-                                        <tbody>
-											<?php
-											foreach ($warga as $key => $value) {
-											?>
-                                            <tr>
-                                                <td><?php echo $value['nama']; ?></td>
-                                                <td><?php echo $value['alamat']; ?></td>
-                                                <td><?php echo "Rp ".number_format($value['gaji']); ?></td>
-                                                <td><?php echo $value['hasBalita'] == '0' ? "Tidak Punya" : "Punya"; ?></td>
-                                                <td><?php echo $value['umur'] == 1 ? "Diatas 45 Tahun" : "Dibawah 45 tahun"; ?></td>
-                                                <td><?php echo $value['sekolah'] == 1 ? "Sekolah" : "Lulus/Belum"; ?></td>
-                                                <td><?php echo $value['is_pns'] == '0' ? "Non PNS" : "PNS"; ?></td>
-                                                <td>
-													<?php
-													if($value['status'][0] == "DITERIMA") {
-													?>
-													<span class="badge bg-primary text-light fs-6"><i class="ri-cash-line"></i> Dapat Bantuan</span>
-													<?php
-													} else {
-													?>
-													<span class="badge bg-danger text-light fs-6"><i class="ri-close-line"></i> Tidak Dapat Bantuan</span>
-													<?php
-													}
-													?>
-												</td>
-                                            </tr>
-											<?php
-											}
-											?>
-                                        </tbody>
-                                    </table>
-
-                                </div> <!-- end card body-->
+                                                <tbody>
+                                                    <?php
+                                                    foreach ($warga as $key => $value) {
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" name="id[]" value="<?php echo $value['id']; ?>"> 
+                                                            <input type="hidden" name="status[]" value="<?php echo $value['status'][0] == "DITERIMA" ? 1 : 0; ?>"> 
+                                                            <?php echo $value['nama']; ?>
+                                                        </td>
+                                                        <td><?php echo $value['alamat']; ?></td>
+                                                        <td><?php echo "Rp ".number_format($value['gaji']); ?></td>
+                                                        <td><?php echo $value['hasBalita'] == '0' ? "Tidak Punya" : "Punya"; ?></td>
+                                                        <td><?php echo $value['umur'] == 1 ? "Diatas 45 Tahun" : "Dibawah 45 tahun"; ?></td>
+                                                        <td><?php echo $value['sekolah'] == 1 ? "Sekolah" : "Lulus/Belum"; ?></td>
+                                                        <td><?php echo $value['is_pns'] == '0' ? "Non PNS" : "PNS"; ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if($value['status'][0] == "DITERIMA") {
+                                                            ?>
+                                                            <span class="badge bg-primary text-light fs-6"><i class="ri-cash-line"></i> Dapat Bantuan</span>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                            <span class="badge bg-danger text-light fs-6"><i class="ri-close-line"></i> Tidak Dapat Bantuan</span>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end card body-->
+                                    </form>
+                                </div> <!-- end card -->
                             </div> <!-- end card -->
                         </div><!-- end col-->
                     </div> <!-- end row-->

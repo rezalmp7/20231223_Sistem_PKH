@@ -213,8 +213,23 @@
                                 <span> Sample Data NB </span>
                             </a>
                         </li>
+                        <li class="side-nav-item">
+                            <a href="<?php echo base_url(); ?>Laporan" class="side-nav-link">
+                                <i class="ri-file-chart-line"></i>
+                                <span> Laporan  </span>
+                            </a>
+                        </li>
 						<?php
-						} else {
+						} else if($this->session->userdata('status') == 'login_kepala') {
+                        ?>
+                        <li class="side-nav-item">
+                            <a href="<?php echo base_url(); ?>Laporan" class="side-nav-link">
+                                <i class="ri-file-chart-line"></i>
+                                <span> Laporan  </span>
+                            </a>
+                        </li>
+                        <?php
+                        } else {
 						?>
                         <li class="side-nav-item">
                             <a href="<?php echo base_url(); ?>penerimaPKH" class="side-nav-link">
